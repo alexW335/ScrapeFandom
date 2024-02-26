@@ -11,11 +11,17 @@ for value in "$@"; do
     echo "Running commands for value: $value"
     
     # run python script to scrape fandom
-    python3 ScrapeFandom.py "$value"
+    python ScrapeFandom.py "$value"
+
+    # report successful scrape
+    echo "Successful scrape of: $value"
     
     # run wikiextractor with necessary options
     wikiextractor "$value.xml" --no-templates -l --json -o "$value"
+
+    # successful extraction
+    echo "Successful wikiextraction of: $value"
     
     # run python script to convert json to text
-    python3 json2jsonl.py "$value/" "$value.jsonl"
+    python json2jsonl.py ./"$value"/ "$value".jsonl
 done

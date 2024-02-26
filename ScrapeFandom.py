@@ -89,11 +89,11 @@ while nextpage_url != "":
 # Files in present working directory
 files = os.listdir(f"{fandom_site}_raw")
 # Create a new file to write to
-with open(f"{fandom_site}.xml", "w") as outfile:
+with open(f"{fandom_site}.xml", "w", encoding='utf-8') as outfile:
     # Loop through all files in the directory
     for fname in files:
         # Open each file and read it as a MediaWiki XML file
-        with open(f"{fandom_site}_raw/{fname}", "r") as infile:
+        with open(f"{fandom_site}_raw/{fname}", "r", encoding='utf-8') as infile:
             # Write the contents of each file to the new file
             outfile.write(infile.read())
             outfile.write("\n")
